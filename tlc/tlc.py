@@ -1,0 +1,54 @@
+# -*- coding: utf-8 -*-
+import os
+
+# Functions definition
+
+
+class Bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
+def colors(text, color, bold='false'):
+    out = ""
+    if color == "red":
+        out = Bcolors.FAIL + text + Bcolors.ENDC
+    elif color == "blue":
+        out = Bcolors.OKBLUE + text + Bcolors.ENDC
+    elif color == "green":
+        out = Bcolors.OKGREEN + text + Bcolors.ENDC
+    elif color == "yellow":
+        out = Bcolors.WARNING + text + Bcolors.ENDC
+    elif color == "pink":
+        out = Bcolors.HEADER + text + Bcolors.ENDC
+
+    if bold == 'true':
+        return Bcolors.BOLD + out
+    return out
+
+
+# -------------------------------------------
+# Variables
+guid = '2295'
+username = 'itamar.portela-smanager.com.br'
+clientvm = username+'@clientvm.'+guid+'.example.opentlc.com'
+occluster = 'https://api.shared.na.openshift.opentlc.com:6443'
+key = '~/.ssh/id_rsa.pub'
+ssh = 'ssh -i '+key+' '+clientvm
+oclogin = 'oc login -u '+username+' '+occluster
+# -------------------------------------------
+
+# Commands
+os.system('clear')
+print(colors('######### - SManager TechTeam  - #########', 'red', 'true'))
+print(colors('\n         Conectando à Client VM\n', 'green'))
+print(colors('\n         Execute o comando após a conexão:\n', 'blue'))
+print(colors(oclogin,'red')+'\n')
+os.system(ssh)
+

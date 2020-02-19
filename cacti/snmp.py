@@ -85,8 +85,9 @@ else:
     os.system('chown root:root /etc/snmp/snmpd.conf;chmod 777 /etc/snmp/snmpd.conf')
     #Iniciando e ativando o serviço
     print(colors("\nIniciando serviço snmp",'blue'))
-    os.system('service snmpd start')
     os.system('service snmpd restart')
+    os.system('service snmpd start')
+    
     #Incluindo na inicialização
     print(colors("\n=== Incluindo o serviço snmp na inicialização do sistema ===",'blue'))
     testService = os.path.exists("/etc/systemd/system/multi-user.target.wants/snmpd.service")

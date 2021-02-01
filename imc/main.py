@@ -3,8 +3,8 @@
 import os
 peso = 0
 altura = 0
-cmd = 'xdg-open https://www.smartfit.com.br/'
-cmd2 = 'xdg-open https://www.mcdonalds.com.br'
+#cmd = 'xdg-open https://www.smartfit.com.br/'
+#cmd2 = 'xdg-open https://www.mcdonalds.com.br'
 print("Calculadora de IMC")
 peso = float(input("Digite o peso (ex 68): "))
 altura = float(input("Digite a altura (ex 1.70): "))
@@ -12,7 +12,7 @@ imc = peso / (altura * altura)
 print("Seu imc é", imc)
 if imc < 18.5:
     print("Você é Magro")
-    os.system(cmd2)
+#    os.system(cmd2)
 if imc >= 18.5 and imc < 25:
     print("Você é Normal")
 if imc >= 25 and imc < 30:
@@ -22,4 +22,4 @@ if imc >= 30 and imc < 40:
 if imc >= 40:
     print("Seu imc é", imc)
     print("Você está gravemente obeso")
-    os.system(cmd)
+#    os.system(cmd)

@@ -18,7 +18,7 @@ if imc >= 18.5 and imc < 25:
 if imc >= 25 and imc < 30:
     print("Você está com Sobrepeso")
 if imc >= 30 and imc < 40:
-    print("Você está Obeso")
+    print("Você tá gordão")
 if imc >= 40:
     print("Você está gravemente obeso")
 #    os.system(cmd)

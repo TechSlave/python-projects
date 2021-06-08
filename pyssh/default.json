@@ -1,0 +1,9 @@
+{
+    "default_data":{
+        "user":"itamar.portela",
+        "domain":"pamcary-interno.com.br",
+        "port":"5398",
+        "dir_origin":"~/Downloads/pkg",
+        "dir_destiny":"/tmp"
+    }
+}

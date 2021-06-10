@@ -4,28 +4,37 @@ import os
 from os import path
 import argparse
 import sys
+import simplejson as json
 from datetime import date
 
+def jsonr(json_name):
+    item = ['user','domain', 'port', 'dir_origin', 'dir_destiny']
+    f = open (json_name, "r")
+    data = json.loads(f.read())
+    f.close()
+    return data
 # Constantes
-user_default = "itamar.portela"
-port_default = 5398
-dir_origin = "~/pamcary/pkg"
-dir_output = "/tmp"
-today = ".{}.{}.{}".format(date.today().year, date.today().month, date.today().day )
+data = jsonr("default.json")
 
+user_default = data['user']
+domain_default = data['domain']
+port_default = data['port']
+dir_origin = data['dir_origin']
+dir_output = data['dir_destiny']
+today = ".{}.{}.{}".format(date.today().year, date.today().month, date.today().day )
 
 def argparser():
     parser = argparse.ArgumentParser(description='Easier ssh and scp')
     parser.add_argument('server', help="Servidor para a conexao")
     parser.add_argument('--user', "-u", default=user_default, help="Usuario para o acesso")
-    parser.add_argument('--port', "-p", help="Porta a ser utilizada, "u" para 5398")
+    parser.add_argument('--port', "-p", help="Porta a ser utilizada, "u" para Default")
     parser.add_argument('--transfer', "-t", action='store_true', help="Ativa transferencia de arquivos")
     parser.add_argument('--dt', "-dt", action='store_true', help="Inserir data no arquivo")
-    parser.add_argument('--directory', "-d", default="/home/itamar/pamcary/pkg/", required=False,
+    parser.add_argument('--directory', "-d", default=dir_origin, required=False,
                         help="Diretorio de origem")
     parser.add_argument('--filename', "-f",  default="all", nargs='*',
                         help="Nome do arquivo a ser transferido, padrão: all (todos)")
-    parser.add_argument('--output', "-o", default="/tmp", help="Diretorio de destino do arquivo")
+    parser.add_argument('--output', "-o", default=dir_output, help="Diretorio de destino do arquivo")
 
     args = parser.parse_args()
     return args
@@ -66,8 +75,6 @@ def scp(user, server, dt, dir, filename, output, port):
 
 
 def main(arg):
-    ################ler arquivo com os dados
-    with open('info', 'r') as reader:
 
     user = argparser().user
     server = argparser().server
